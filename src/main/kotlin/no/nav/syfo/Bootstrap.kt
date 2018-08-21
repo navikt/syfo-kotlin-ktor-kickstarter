@@ -12,12 +12,15 @@ fun doReadynessCheck(): Boolean {
     return true
 }
 
+data class ApplicationState(var running: Boolean = true)
+
 
 fun main(args: Array<String>) {
     val env = Environment()
+    val applicationState = ApplicationState()
 
     val applicationServer = embeddedServer(Netty, env.applicationPort) {
-        initRouting()
+        initRouting(applicationState)
     }.start(wait = true)
 
     Runtime.getRuntime().addShutdownHook(Thread {
@@ -25,8 +28,8 @@ fun main(args: Array<String>) {
     })
 }
 
-fun Application.initRouting() {
+fun Application.initRouting(applicationState: ApplicationState) {
     routing {
-        registerNaisApi(::doReadynessCheck)
+        registerNaisApi(readynessCheck = ::doReadynessCheck, livenessCheck = { applicationState.running })
     }
 }
