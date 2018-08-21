@@ -3,6 +3,8 @@ package no.nav.syfo
 data class Environment(
     val applicationPort: Int = getEnvVar("APPLICATION_PORT", "8080").toInt(),
     val applicationThreads: Int = getEnvVar("APPLICATION_THREADS", "4").toInt(),
+    val sampleSoapEndpointurl: String = getEnvVar("SAMPLE_SOAP_ENDPOINTURL"),
+    val securityTokenServiceUrl: String = getEnvVar("SECURITYTOKENSERVICE_URL"),
     val srvappnameUsername: String = getEnvVar("SRVAPPNAME_USERNAME"),
     val srvappnamePassword: String = getEnvVar("SRVAPPNAME_PASSWORD")
 )

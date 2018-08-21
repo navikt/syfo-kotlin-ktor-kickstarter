@@ -31,3 +31,5 @@ fasitResources:
 used:
   - alias: srvappname
     resourceType: Credential
+  - alias: sample_soap
+    resourceType: webserviceendpoint
