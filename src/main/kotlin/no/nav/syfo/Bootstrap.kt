@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
 
     val applicationServer = embeddedServer(Netty, env.applicationPort) {
         initRouting(applicationState)
-    }.start(wait = true)
+    }.start(wait = false)
 
     try {
         val listeners = (1..env.applicationThreads).map {
@@ -42,7 +42,7 @@ fun main(args: Array<String>) {
 }
 
 suspend fun blockingApplicationLogic(applicationState: ApplicationState) {
-    while (!applicationState.running) {
+    while (applicationState.running) {
         delay(100)
     }
 }
