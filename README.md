@@ -1,4 +1,4 @@
-# SYFO kotlin ktor kickstarter
+# SYFO ktor kickstarter
 A simple starter project for creating a kotlin + ktor based webapplication for the NAIS platform. 
 
 ## Getting started
