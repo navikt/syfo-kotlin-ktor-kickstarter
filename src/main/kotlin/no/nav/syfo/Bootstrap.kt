@@ -8,10 +8,12 @@ import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.runBlocking
 import no.nav.syfo.api.registerNaisApi
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 data class ApplicationState(var running: Boolean = true, var initialized: Boolean = false)
-
+val log: Logger = LoggerFactory.getLogger("no.nav.syfo")
 
 fun main(args: Array<String>) {
     val env = Environment()
@@ -19,7 +21,7 @@ fun main(args: Array<String>) {
 
     val applicationServer = embeddedServer(Netty, env.applicationPort) {
         initRouting(applicationState)
-    }.start(wait = true)
+    }.start(wait = false)
 
     try {
         val listeners = (1..env.applicationThreads).map {
@@ -42,7 +44,7 @@ fun main(args: Array<String>) {
 }
 
 suspend fun blockingApplicationLogic(applicationState: ApplicationState) {
-    while (!applicationState.running) {
+    while (applicationState.running) {
         delay(100)
     }
 }
