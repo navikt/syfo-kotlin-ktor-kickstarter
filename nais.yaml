@@ -18,7 +18,7 @@ healthcheck:
     timeout: 1
 prometheus:
   enabled: true
-  path: /internal/prometheus
+  path: /prometheus
 resources:
   limits:
     cpu: 500m
