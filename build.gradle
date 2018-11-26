@@ -11,13 +11,13 @@ buildscript {
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.51'
     id("com.diffplug.gradle.spotless") version "3.14.0"
-    id 'application'
+    id("com.github.johnrengelman.shadow") version "4.0.3"
 }
 
 group 'no.nav.syfo'
 version '1.0-SNAPSHOT'
 
-mainClassName = "no.nav.syfo.BootstrapKt"
+jar.manifest.attributes("Main-Class" : "no.nav.syfo.BootstrapKt")
 
 repositories {
     mavenCentral()
