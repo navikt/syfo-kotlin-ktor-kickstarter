@@ -3,6 +3,7 @@ buildscript {
     ext.kluent_version = '1.39'
     ext.ktor_version = '1.1.1'
     ext.logback_version = '1.2.3'
+    ext.logstash_encoder_version = '5.1'
     ext.prometheus_version = '0.5.0'
     ext.spek_version = "2.0.0-alpha.1"
 }
@@ -44,6 +45,7 @@ dependencies {
     implementation "io.ktor:ktor-server-netty:$ktor_version"
 
     implementation "ch.qos.logback:logback-classic:$logback_version"
+    implementation "net.logstash.logback:logstash-logback-encoder:$logstash_encoder_version"
 
 
     testImplementation "org.amshove.kluent:kluent:$kluent_version"
